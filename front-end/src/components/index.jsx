@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 
-export default function Index() {
+export default function Index({setShowLogin}) {
 
     return (
         <>

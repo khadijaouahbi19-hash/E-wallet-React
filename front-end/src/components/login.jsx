@@ -1,10 +1,22 @@
+import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { finduserbymail } from "../data/database";
+export default function Login(setShowLogin,setUser){
+    const[password,setPassword]=useState("");
+    const[email,setEmail]=useState("");
+    const handLogin=()=>{
+        let user=finduserbymail(email,password);
+        if(user){
+            sessionStorage.setItem('currentUser',JSON.stringify(user));
+            setUser(user);
+            setShowLogin(false);
 
+        }else alert("bad credentials !");
 
-export default function Login() {
-    return (
-        <>
+    }
+    return(
+         <>
             <Header />
             <main>
                 <section className="<hero">
@@ -31,7 +43,7 @@ export default function Login() {
                                 <span id="display" className="toggle-password" >👁</span>
                             </div>
                             <p id="result"></p>
-                            <button id="submitbtn" type="button" className=" btn btn-primary">
+                            <button id="submitbtn" type="button" className=" btn btn-primary"  onClick={()=>handleLogin()}>
                                 Se connecter
                             </button>
                         </form>
@@ -44,7 +56,7 @@ export default function Login() {
                     </div>
 
                     <div className="hero-image">
-                        <img src="../src/assets/e-wallet6.gif" alt="Illustration de connexion" />
+                        <img src="../src/assets/e-Wallet6.gif" alt="Illustration de connexion" />
                     </div>
                 </section>
             </main>
